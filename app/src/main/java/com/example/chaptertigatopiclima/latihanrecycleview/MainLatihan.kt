@@ -1,7 +1,9 @@
 package com.example.chaptertigatopiclima.latihanrecycleview
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chaptertigatopiclima.R
 import kotlinx.android.synthetic.main.activity_main_latihan.*
@@ -54,8 +56,13 @@ class MainLatihan : AppCompatActivity() {
         var adapterLatihan = AdapterLatihan(listLatihan)
 
         val linearVertical = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        val grid = GridLayoutManager(this, 2)
 
-        rvLatihan.layoutManager = linearVertical
+        if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            rvLatihan.layoutManager = grid
+        }else{
+            rvLatihan.layoutManager = linearVertical
+        }
         rvLatihan.adapter = adapterLatihan
     }
 }
